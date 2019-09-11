@@ -1,3 +1,4 @@
+
 initRowPickerHandler<-function(){
   addResourcePath(
     prefix = 'rowPicker', directoryPath = system.file('www', package='rowPicker')
@@ -21,8 +22,12 @@ initRowPickerHandler<-function(){
 }
 
 
-
-rowPicker<-function(inputId, size){
+#' constructs a rowPicker with the given count
+#'
+#' @param inputId the id of this shiny input
+#' @paam count the number of initial row entries
+#' @export
+rowPicker<-function(inputId, count){
 
   tagList(
     singleton(
@@ -37,7 +42,7 @@ rowPicker<-function(inputId, size){
     ),
     div(
       id=inputId,
-      'data-count'=toJSON(as.numeric(size)),
+      'data-count'=toJSON(as.numeric(count)),
       class="rowPicker cSnippetToolBarContainer leftAlign",
       tags$ul(
         id=paste0(inputId,'-list'), #"tibRowButtons",
@@ -58,7 +63,15 @@ rowPicker<-function(inputId, size){
   )
 }
 
-
+#' updates the RowPicker
+#'
+#' @param count reset with value count many rows
+#' @param renumber change row numbers to be sequential
+#' @param clearRows reset with 0 rows
+#' @param insertRow insertRow at index = value of insertRow
+#' @param deleteRow deleteRow at index = value of deleteRow
+#' @param selectRow selectRow at index = value of selectRow
+#' @export
 updateRowPicker<-function(session, inputId, ...){
   mssg<-list(...)
   print(mssg)
