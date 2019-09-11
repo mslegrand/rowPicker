@@ -8,42 +8,29 @@
 #
 
 library(shiny)
-source('rowPicker.R')
+library(rowPicker)
 # Define UI for application that draws a histogram
 ui <- fluidPage(
-    
-    tags$head(
-        tags$link(rel = "stylesheet", type = "text/css", href = "tibRow.css"),
-        tags$link(rel = "stylesheet", type = "text/css", href = "snippet.css"),
-        tags$script(src = 'shared/jqueryui/jquery-ui.min.js'),
-        tags$script(src="snippetScrolleR.js"),
-        tags$script(src="rowPicker.js")
-    ),
-    
-    # Application title
-    
-
-    # Sidebar with a slider input for number of bins 
     basicPage(
         rowPicker(inputId="myTibRowCntrl", size=5),
         fixedPanel(top=0, left=100,
            span( tags$b('selected:'),
                 textOutput(outputId = 'selection')
             ),
-           span( tags$b('group:'), 
+           span( tags$b('group:'),
                  textOutput(outputId = 'group')
            ),
-           span( tags$b('order:'), 
+           span( tags$b('order:'),
                  textOutput(outputId = 'order')
            ),
-           span( tags$b('count:'), 
+           span( tags$b('count:'),
                  textOutput(outputId = 'count')
            ),
-           numericInput(inputId = 'size', 
-                label='Reset Size', 
+           numericInput(inputId = 'size',
+                label='Reset Size',
                 10, min = 0, max = 100, step = NA,
                 width = 100
-            ), 
+            ),
            actionButton(inputId='set', label='set'),
            actionButton(inputId='renumber', label='renumber')
         )
@@ -60,7 +47,7 @@ server <- function(input, output, session) {
         } else {
             updateRowPicker(session, "myTibRowCntrl", clearRows= TRUE)
         }
-        
+
     })
     observeEvent(input$renumber,{
         updateRowPicker(session, "myTibRowCntrl", renumber = TRUE)
@@ -69,15 +56,7 @@ server <- function(input, output, session) {
     output$group=renderText(input$myTibRowCntrl$group)
     output$order=renderText(input$myTibRowCntrl$order)
     output$count=renderText('unknown')
-    # output$distPlot <- renderPlot({
-    #     # generate bins based on input$bins from ui.R
-    #     x    <- faithful[, 2]
-    #     bins <- seq(min(x), max(x), length.out = input$bins + 1)
-    # 
-    #     # draw the histogram with the specified number of bins
-    #     hist(x, breaks = bins, col = 'darkgray', border = 'white')
-    # })
 }
 
-# Run the application 
+# Run the application
 shinyApp(ui = ui, server = server)
