@@ -1,12 +1,44 @@
-library(jsonlite)
+initRowPickerHandler<-function(){
+  addResourcePath(
+    prefix = 'rowPicker', directoryPath = system.file('www', package='rowPicker')
+  )
+  try({ removeInputHandler("rowPickerBinding") })
 
-try({ removeInputHandler("rowPickerBinding") })
+  shiny::registerInputHandler(
+    "rowPickerBinding",
+    function(x, shinysession, name) {
+      if(is.null(x)) {
+        return(NULL)
+      } else {
+        #selected<-jsonlite::fromJSON(x$selected)
+        print(x)
+        # return(res)
+        return(x)
+      }
+    }
+  )
+  HTML("")
+}
+
+
 
 rowPicker<-function(inputId, size){
-  div(
-    id=inputId, 
-    'data-count'=toJSON(as.numeric(size)),
-    class="rowPicker cSnippetToolBarContainer leftAlign",
+
+  tagList(
+    singleton(
+      tags$head(
+        initRowPickerHandler(),
+        tags$link(rel = "stylesheet", type = "text/css", href = "rowPicker/tibRow.css"),
+        tags$link(rel = "stylesheet", type = "text/css", href = "rowPicker/snippet.css"),
+        tags$script(src = 'shared/jqueryui/jquery-ui.min.js'),
+        tags$script(src="rowPicker/snippetScrolleR.js"),
+        tags$script(src="rowPicker/rowPicker.js")
+      )
+    ),
+    div(
+      id=inputId,
+      'data-count'=toJSON(as.numeric(size)),
+      class="rowPicker cSnippetToolBarContainer leftAlign",
       tags$ul(
         id=paste0(inputId,'-list'), #"tibRowButtons",
         class="cSnippetToolBarList",
@@ -16,11 +48,12 @@ rowPicker<-function(inputId, size){
           span(999)
         )
       ),
-    div( id=paste0(inputId,'-scrollUp'), class='snippetButton  cTop center',
-         span('class'="glyphicon glyphicon-chevron-up")
-    ),
-    div( id=paste0(inputId,"-scrollDown"), class='snippetButton cBottom center',
-         span('class'="glyphicon glyphicon-chevron-down")
+      div( id=paste0(inputId,'-scrollUp'), class='snippetButton  cTop center',
+           span('class'="glyphicon glyphicon-chevron-up")
+      ),
+      div( id=paste0(inputId,"-scrollDown"), class='snippetButton cBottom center',
+           span('class'="glyphicon glyphicon-chevron-down")
+      )
     )
   )
 }
@@ -32,30 +65,3 @@ updateRowPicker<-function(session, inputId, ...){
   session$sendInputMessage(inputId, mssg)
 }
 
-shiny::registerInputHandler(
-  "rowPickerBinding", 
-  function(x, shinysession, name) {
-    
-    if(is.null(x)) {
-      return(NULL)
-    } else {
-      #selected<-jsonlite::fromJSON(x$selected)
-      print(x)
-      # # Parse return value from JSON into R format dataframe
-      # colors_df <- jsonlite::fromJSON(x)
-      # 
-      # # Extract the values of the data frame as a list
-      # res <- list()  
-      # 
-      # res[["fill"]] <- colors_df$value[
-      #   which(grepl(colors_df$name,pattern="fill"))
-      #   ]
-      # res[["border"]] <- colors_df$value[
-      #   which(grepl(colors_df$name,pattern="border"))
-      #   ]
-      # 
-      # return(res)
-      return(x)
-    }
-  }
-)
