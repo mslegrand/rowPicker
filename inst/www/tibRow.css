@@ -1,0 +1,50 @@
+.cTibRowToolBarList {
+  position: absolute;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  top:0;
+  bottom:0;
+}
+.cTibRowToolBarContainer{
+  position: absolute;
+  top:0;
+  bottom:0;
+  left: 4px;
+  width: 54px;
+  border: 3px solid blue;
+  background-color:#222244;
+  overflow: hidden; 
+}
+.TibRowButton{
+  list-style-type: none;
+  width: 48px;
+  height: 32px;
+  /*padding: 0.25em;*/
+  float: left;
+  /*padding-left: 3px; */
+  padding: 0;
+  margin: 0 ;
+  border-style: solid;
+  border-width: 1px;
+  background: #222244;
+  color: #FF0000;
+}
+.cTop{
+  position: absolute;
+  top:0;
+  border-width: 4px;
+  border-style: ridge;
+  background: #000044;
+}
+.cBottom{
+  position: absolute;
+  bottom:0;
+  border-width: 4px;
+  border-style: ridge;
+  background: #000044;
+}
+.center {
+    padding:4px;
+    text-align: center;
+}

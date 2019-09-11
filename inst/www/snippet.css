@@ -1,0 +1,106 @@
+.cMidPanel{
+  position: absolute;
+  top:150px;
+  bottom:150px;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  padding: 10px;
+}
+.cSnippetToolBarList {
+  position: absolute;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  top:0;
+  bottom:0;
+}
+.cSnippetToolBarContainer{
+  position: absolute;
+  top:0;
+  bottom:0;
+  width: 54px;
+  border: 3px solid blue;
+  background-color:#222244;
+  overflow: hidden; 
+}
+.cSnippetToolBarContainer.rightAlign{
+	right: 4px;
+}
+.cSnippetToolBarContainer.leftAlign{
+	left: 4px;
+}
+.snippetButton{
+  list-style-type: none;
+  width: 48px;
+  height: 32px;
+  /*padding: 0.25em;*/
+  float: left;
+  /*padding-left: 3px; */
+  padding: 0;
+  margin: 0 ;
+  border-style: solid;
+  border-width: 1px;
+  background: #222244;
+  color: #44FFFF;
+}
+.snippetButton a{
+	color: #00FFFF;
+}
+.cTop{
+  position: absolute;
+  top:0;
+  border-width: 4px;
+  border-style: ridge;
+  background: #000044;
+}
+.cBottom{
+  position: absolute;
+  bottom:0;
+  border-width: 4px;
+  border-style: ridge;
+  background: #000044;
+}
+.center {
+    padding:4px;
+    text-align: center;
+}
+.tibRowButton{
+  list-style-type: none;
+  width: 48px;
+  height: 22px;
+  /*padding: 0.25em;*/
+  float: left;
+  /*padding-left: 3px; */
+  padding: 0;
+  margin: 0 ;
+  text-align: center;
+  border-style: solid;
+  border-width: 1px;
+  background: #222244;
+  color: #44FFFF;
+}
+.tibRowButton span{
+	 text-align: center;
+	color: #00FFFF;
+}
+.tibRowButton.selected{
+	border-width: px;
+	background: #AAFFFF;
+	color: #FFFFFF;
+}
+.tibRowButton.selected span{
+	color: #000000;
+	font-weight:bold;
+}
+.tibRowButton.group{
+	border-width: 2px;
+	background: #4444FF;
+}
+.tibRowButton.group span{
+	color: #FFFFFF;
+	font-weight:bold;
+}
+
+
+
