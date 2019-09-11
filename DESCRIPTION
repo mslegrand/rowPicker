@@ -3,7 +3,13 @@ Type: Package
 Title: rowPicker
 Version: 0.1.0
 Author: M.S.Legrand
+Maintainer: M.S.Legrand <slegrand3.14@gmail.com>
 Description: Shiny custom input for selecting/ordering rows by index
 License: MIT
 Encoding: UTF-8
 LazyData: true
+Depends:
+    R (>= 3.3.2),
+Imports:
+    shiny,
+    jsonlite
