@@ -8,11 +8,12 @@
 #
 
 library(shiny)
+library(jsonlite)
 library(rowPicker)
 # Define UI for application that draws a histogram
 ui <- fluidPage(
     basicPage(
-        rowPicker(inputId="myTibRowCntrl", size=5),
+        rowPicker(inputId="myTibRowCntrl", count=5),
         fixedPanel(top=0, left=100,
            span( tags$b('selected:'),
                 textOutput(outputId = 'selection')
@@ -55,7 +56,7 @@ server <- function(input, output, session) {
     output$selection=renderText(input$myTibRowCntrl$selected)
     output$group=renderText(input$myTibRowCntrl$group)
     output$order=renderText(input$myTibRowCntrl$order)
-    output$count=renderText('unknown')
+    output$count=renderText(length(input$myTibRowCntrl$order))
 }
 
 # Run the application
