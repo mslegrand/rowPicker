@@ -22,7 +22,7 @@
   width: 54px;
   border: 3px solid blue;
   background-color:#222244;
-  overflow: hidden; 
+  overflow: hidden;
 }
 .cSnippetToolBarContainer.rightAlign{
 	right: 4px;
@@ -30,7 +30,7 @@
 .cSnippetToolBarContainer.leftAlign{
 	left: 4px;
 }
-.snippetButton{
+.scrolleRButton{
   list-style-type: none;
   width: 48px;
   height: 32px;
@@ -44,7 +44,7 @@
   background: #222244;
   color: #44FFFF;
 }
-.snippetButton a{
+.scrolleRButton a{
 	color: #00FFFF;
 }
 .cTop{

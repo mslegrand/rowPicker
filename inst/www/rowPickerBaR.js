@@ -11,7 +11,6 @@ function SnippetToolBaR(containerId, listId, buttonDownId, buttonUpId, itemHeigh
 }
 
   SnippetToolBaR.prototype.getTopPos=function(){
-    console.log('listId='+JSON.stringify(this.listId));
     return $(this.listId).position().top;
   };
 
@@ -34,14 +33,17 @@ function SnippetToolBaR(containerId, listId, buttonDownId, buttonUpId, itemHeigh
       // show down
       $(this.downId).show();
     } else if( deltaHidden < 0 ){ // deltaHidden<=0; container grew, hidden decreased
-      // slide list down by the amount -deltaHidden
-      if(deltaHidden>-this.itemHeight){
-        $(this.listId).animate({top:0},'fast');
-      } else{
-        $(this.listId).animate({top:"-="+ deltaHidden +"px"},'fast');
+      // slide list down
+      if(this.heightOfHidden()<=0){
+         $(this.listId).animate({top:0},'fast');
+         $(this.upId).hide();
+         $(this.downId).hide();
+      } else if( this.getTopPos()<= -this.heightOfHidden()){
+         $(this.listId).animate({top:-this.heightOfHidden()},'fast');
+         $(this.downId).hide();
       }
     }
-    console.log('getTopPos()=' + this.getTopPos() );
+
     if( this.getTopPos()>=-4){
       $(this.upId).hide();
     }
@@ -53,22 +55,21 @@ function SnippetToolBaR(containerId, listId, buttonDownId, buttonUpId, itemHeigh
 
 
   SnippetToolBaR.prototype.onDownClick = function(){
-    console.log('down click 0--');
-    var m1 = $(this.containerId).outerHeight()-2*this.itemHeight;
-    var m2 = (this.heightOfHidden()+ this.getTopPos());
-    var delta = Math.min(m1,m2);
-    if(m2<=m1){
-      $(this.downId).fadeOut('slow');
-      delta=delta+8;
+    //console.log('down click 0--');
+    var delta  = 0.5*$(this.containerId).outerHeight();
+    var tp = this.getTopPos() - delta;
+    if( ( tp + this.heightOfHidden() )<=0 ){
+        tp = -this.heightOfHidden()-6;
+        $(this.downId).fadeOut('slow');
     }
-    $(this.listId).animate({top:"-=" + delta + "px"},'slow',function(){$(this.upId).fadeIn('slow');});
+    $(this.listId).animate({top: tp },'slow',function(){$(this.upId).fadeIn('slow');});
     $(this.upId).fadeIn('slow');
   };
 
 
 
   SnippetToolBaR.prototype.onUpClick = function() {
-    console.log("tbUp click");
+    //console.log("tbUp click");
   	$(this.downId).fadeIn('slow');
     var delta = Math.min(-this.getTopPos(), $(this.containerId).outerHeight()-2*this.itemHeight );
     if(-this.getTopPos()<= $(this.containerId).outerHeight()-2*this.itemHeight ){
@@ -78,24 +79,6 @@ function SnippetToolBaR(containerId, listId, buttonDownId, buttonUpId, itemHeigh
   };
 
 
-
-
-/*
-var toggleClass(el, className){
-	el.toggleCkass(className);
-};
-*/
-//var rowClick=function(event){
-//}
-
-/*
-#1. populate
-#2. renumber
-#3. sortable
-#4. currentSelection
-#5. currrentGroup
-#6. insertAt
-*/
 
 function RowPickerList(containerId, listId){
   this.cID= "#" + containerId;
