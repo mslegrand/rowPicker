@@ -11,10 +11,12 @@ initRowPickerHandler<-function(){
       if(is.null(x)) {
         return(NULL)
       } else {
-        #selected<-jsonlite::fromJSON(x$selected)
-        print(x)
-        # return(res)
-        return(x)
+        rtv<-list(
+          selected=as.numeric(jsonlite::fromJSON(x$selected)),
+          order=as.numeric(jsonlite::fromJSON(x$order)),
+          group=as.numeric(jsonlite::fromJSON(x$group))
+        )
+        return(rtv)
       }
     }
   )
@@ -25,7 +27,7 @@ initRowPickerHandler<-function(){
 #' constructs a rowPicker with the given count
 #'
 #' @param inputId the id of this shiny input
-#' @paam count the number of initial row entries
+#' @param count the number of initial row entries
 #' @export
 rowPicker<-function(inputId, count){
 
@@ -74,7 +76,7 @@ rowPicker<-function(inputId, count){
 #' @export
 updateRowPicker<-function(session, inputId, ...){
   mssg<-list(...)
-  print(mssg)
+  #print(mssg)
   session$sendInputMessage(inputId, mssg)
 }
 
