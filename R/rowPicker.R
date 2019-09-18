@@ -54,10 +54,10 @@ rowPicker<-function(inputId, count){
           span(999)
         )
       ),
-      div( id=paste0(inputId,'-scrollUp'), class='snippetButton  cTop center',
+      div( id=paste0(inputId,'-scrollUp'), class='scrolleRButton  cTop center',
            span('class'="glyphicon glyphicon-chevron-up")
       ),
-      div( id=paste0(inputId,"-scrollDown"), class='snippetButton cBottom center',
+      div( id=paste0(inputId,"-scrollDown"), class='scrolleRButton cBottom center',
            span('class'="glyphicon glyphicon-chevron-down")
       )
     )
