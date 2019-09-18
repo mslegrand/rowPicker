@@ -1,6 +1,6 @@
 
-// cSnippetToolBarContainer > cSnippetToolBarList > snippetButton
-function SnippetToolBaR(containerId, listId, buttonDownId, buttonUpId, itemHeight){
+// cRowPickerScrollBaRContainer > cRowPickerScrollBaRList > snippetButton
+function RowPickerScrollBaR(containerId, listId, buttonDownId, buttonUpId, itemHeight){
   this.containerId =  "#" +  containerId;
   this.listId      =  "#" +  listId;
   this.downId      =  "#" +  buttonDownId;
@@ -10,21 +10,21 @@ function SnippetToolBaR(containerId, listId, buttonDownId, buttonUpId, itemHeigh
   this.gHiddenHeight=0;
 }
 
-  SnippetToolBaR.prototype.getTopPos=function(){
+  RowPickerScrollBaR.prototype.getTopPos=function(){
     return $(this.listId).position().top;
   };
 
-  SnippetToolBaR.prototype.heightOfList=function(){
+  RowPickerScrollBaR.prototype.heightOfList=function(){
     return this.itemHeight*($(this.listId).children().length);
   };
-  SnippetToolBaR.prototype.heightOfHidden = function(){
+  RowPickerScrollBaR.prototype.heightOfHidden = function(){
     var rtv =  this.heightOfList()-$(this.containerId).outerHeight();
     if(rtv<0){
       rtv=0;
     }
     return rtv;
   };
-  SnippetToolBaR.prototype.reAdjustPos = function(){
+  RowPickerScrollBaR.prototype.reAdjustPos = function(){
     console.log('entering reAdjustPos');
     var deltaHidden = this.heightOfHidden() - this.gHiddenHeight;
     console.log('deltaHidden=' + deltaHidden);
@@ -38,8 +38,8 @@ function SnippetToolBaR(containerId, listId, buttonDownId, buttonUpId, itemHeigh
          $(this.listId).animate({top:0},'fast');
          $(this.upId).hide();
          $(this.downId).hide();
-      } else if( this.getTopPos()<= -this.heightOfHidden()){
-         $(this.listId).animate({top:-this.heightOfHidden()},'fast');
+      } else if( this.getTopPos()<= -this.heightOfHidden()-6){
+         $(this.listId).animate({top:-this.heightOfHidden()-6},'fast');
          $(this.downId).hide();
       }
     }
@@ -54,7 +54,7 @@ function SnippetToolBaR(containerId, listId, buttonDownId, buttonUpId, itemHeigh
   };
 
 
-  SnippetToolBaR.prototype.onDownClick = function(){
+  RowPickerScrollBaR.prototype.onDownClick = function(){
     //console.log('down click 0--');
     var delta  = 0.5*$(this.containerId).outerHeight();
     var tp = this.getTopPos() - delta;
@@ -68,7 +68,7 @@ function SnippetToolBaR(containerId, listId, buttonDownId, buttonUpId, itemHeigh
 
 
 
-  SnippetToolBaR.prototype.onUpClick = function() {
+  RowPickerScrollBaR.prototype.onUpClick = function() {
     //console.log("tbUp click");
   	$(this.downId).fadeIn('slow');
     var delta = Math.min(-this.getTopPos(), $(this.containerId).outerHeight()-2*this.itemHeight );
@@ -220,6 +220,6 @@ function RowPickerList(containerId, listId){
 
 //
 //todo
-//  1. rename SnippetToolBaR => rowToolBaR
+//  1. rename RowPickerScrollBaR => rowToolBaR
 //  2. combine toolBar and PickerList
 //  3. rename snippet js and css

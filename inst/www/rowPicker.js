@@ -9,7 +9,7 @@ $.extend(rowPickerBinding, {
     var inputId2=el.id+'-list';
     var downId=el.id+"-scrollDown";
     var upId=el.id+"-scrollUp";
-    var rowScroller = new SnippetToolBaR( inputId1, inputId2, downId, upId, 22);
+    var rowScroller = new RowPickerScrollBaR( inputId1, inputId2, downId, upId, 22);
     // add to element
     $(el).data("rowScroller", rowScroller);
 
