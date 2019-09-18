@@ -9,7 +9,7 @@ $.extend(rowPickerBinding, {
     var inputId2=el.id+'-list';
     var downId=el.id+"-scrollDown";
     var upId=el.id+"-scrollUp";
-    var rowScroller = new SnippetToolBaR( inputId1, inputId2, downId, upId, 32);
+    var rowScroller = new SnippetToolBaR( inputId1, inputId2, downId, upId, 22);
     // add to element
     $(el).data("rowScroller", rowScroller);
 
@@ -50,12 +50,15 @@ $.extend(rowPickerBinding, {
     if(!!value.count){
       if(value.count>0){
         $(el).data("rowList").populateRows(value.count);
+        $(el).data("rowScroller").reAdjustPos();
       } else {
         $(el).data("rowList").clearRows();
+        $(el).data("rowScroller").reAdjustPos();
       }
     }
     if(!!value.clearRows){
       $(el).data("rowList").clearRows();
+      $(el).data("rowScroller").reAdjustPos();
     }
     if(!!value.renumber){
       $(el).data("rowList").renumberTibRows();
@@ -64,11 +67,13 @@ $.extend(rowPickerBinding, {
       let index=Number(value.insertRow);
       $(el).data("rowList").insertRow(index);
       $(el).data("rowList").renumberTibRows();
+      $(el).data("rowScroller").reAdjustPos();
     }
     if(!!value.deleteRow){
       let index=Number(value.deleteRow);
       $(el).data("rowList").deleteRow(index);
       $(el).data("rowList").renumberTibRows();
+      $(el).data("rowScroller").reAdjustPos();
     }
     if(!!value.addToGroup){
       console.log('addToGroup');
