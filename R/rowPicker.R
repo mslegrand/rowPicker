@@ -35,10 +35,9 @@ rowPicker<-function(inputId, count){
     singleton(
       tags$head(
         initRowPickerHandler(),
-        tags$link(rel = "stylesheet", type = "text/css", href = "rowPicker/tibRow.css"),
-        tags$link(rel = "stylesheet", type = "text/css", href = "rowPicker/snippet.css"),
+        tags$link(rel = "stylesheet", type = "text/css", href = "rowPicker/rowPickerBaR.css"),
         tags$script(src = 'shared/jqueryui/jquery-ui.min.js'),
-        tags$script(src="rowPicker/snippetScrolleR.js"),
+        tags$script(src="rowPicker/rowPickerBaR.js"),
         tags$script(src="rowPicker/rowPicker.js")
       )
     ),
