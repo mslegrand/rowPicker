@@ -57,7 +57,9 @@ ui <- fluidPage(
                              width = 100
                ),
                actionButton(inputId='insertRow', label='insertRow') ,
-               actionButton(inputId='removeRow', label='removeRow')
+               actionButton(inputId='removeRow', label='removeRow') ,
+               actionButton(inputId='addToGroup', label='addToGroup') ,
+               actionButton(inputId='removeFromGroup', label='removeFromGroup')
            )
         )
     )
@@ -87,12 +89,22 @@ server <- function(input, output, session) {
     })
     observeEvent(input$insertRow,{
         pos<-input$rowPosInput
-        newVal=sample.int(100,1)
+        #newVal=sample.int(100,1)
         updateRowPicker(session, "myTibRowCntrl", insertRow = pos)
     })
     observeEvent(input$removeRow,{
         pos<-input$rowPosInput
         updateRowPicker(session, "myTibRowCntrl", deleteRow = pos)
+    })
+    observeEvent(input$addToGroup,{
+        pos<-input$rowPosInput
+        cat('add to group=',pos,"\n")
+        #newVal=sample.int(100,1)
+        updateRowPicker(session, "myTibRowCntrl", addToGroup = pos)
+    })
+    observeEvent(input$removeFromGroup,{
+        pos<-input$rowPosInput
+        updateRowPicker(session, "myTibRowCntrl", removeFromGroup = pos)
     })
 }
 

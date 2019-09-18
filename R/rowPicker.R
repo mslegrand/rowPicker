@@ -76,7 +76,7 @@ rowPicker<-function(inputId, count){
 #' @export
 updateRowPicker<-function(session, inputId, ...){
   mssg<-list(...)
-  #print(mssg)
+  # print(mssg)
   session$sendInputMessage(inputId, mssg)
 }
 

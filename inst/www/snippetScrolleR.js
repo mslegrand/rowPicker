@@ -6,7 +6,7 @@ function SnippetToolBaR(containerId, listId, buttonDownId, buttonUpId, itemHeigh
   this.downId      =  "#" +  buttonDownId;
   this.upId        =  "#" +  buttonUpId;
   this.itemHeight  =  itemHeight;
-  
+
   this.gHiddenHeight=0;
 }
 
@@ -14,7 +14,7 @@ function SnippetToolBaR(containerId, listId, buttonDownId, buttonUpId, itemHeigh
     console.log('listId='+JSON.stringify(this.listId));
     return $(this.listId).position().top;
   };
-  
+
   SnippetToolBaR.prototype.heightOfList=function(){
     return this.itemHeight*($(this.listId).children().length);
   };
@@ -50,12 +50,12 @@ function SnippetToolBaR(containerId, listId, buttonDownId, buttonUpId, itemHeigh
     }
 	  this.gHiddenHeight=this.heightOfHidden();
   };
-  
+
 
   SnippetToolBaR.prototype.onDownClick = function(){
     console.log('down click 0--');
     var m1 = $(this.containerId).outerHeight()-2*this.itemHeight;
-    var m2 = (this.heightOfHidden()+ this.getTopPos()); 
+    var m2 = (this.heightOfHidden()+ this.getTopPos());
     var delta = Math.min(m1,m2);
     if(m2<=m1){
       $(this.downId).fadeOut('slow');
@@ -64,9 +64,9 @@ function SnippetToolBaR(containerId, listId, buttonDownId, buttonUpId, itemHeigh
     $(this.listId).animate({top:"-=" + delta + "px"},'slow',function(){$(this.upId).fadeIn('slow');});
     $(this.upId).fadeIn('slow');
   };
-    
 
-    
+
+
   SnippetToolBaR.prototype.onUpClick = function() {
     console.log("tbUp click");
   	$(this.downId).fadeIn('slow');
@@ -76,7 +76,7 @@ function SnippetToolBaR(containerId, listId, buttonDownId, buttonUpId, itemHeigh
     }
     $(this.listId).animate({top:"+=" + delta +"px"},'slow',function(){});
   };
-    
+
 
 
 
@@ -93,24 +93,24 @@ var toggleClass(el, className){
 #2. renumber
 #3. sortable
 #4. currentSelection
-#5. currrentGroup 
+#5. currrentGroup
 #6. insertAt
 */
 
 function RowPickerList(containerId, listId){
   this.cID= "#" + containerId;
 	this.ID =  "#" +  listId;
-	this.SelectedRow=1; 
+	this.SelectedRow=1;
 	$(this.ID).sortable();
-	
+
   this.change=function(){
     $(this.cID).trigger("change");
   };
-  
+
 	this.renumberTibRows=function(){
 		$(this.ID+' li span').each( function(index, value){
 			$(this).text(index+1);
-		});	
+		});
 		this.change();
 	};
 
@@ -173,21 +173,21 @@ function RowPickerList(containerId, listId){
 		this.selectRow(rowNumber);
 		$(this.cID).trigger("change");
 		//$(this).parent().find(".selected").removeClass("selected");
-		
-		
+
+
 		//renumberTibRows();
 	};
 
 	this.deleteRow=function(rowNumber){
 		var index=rowNumber-1;
 		var nrow= $(this.ID+' li').length;
-		
-		
+
+
 		if(index>=0 && index < nrow){
 			let reset=false;
 			if( $(this.ID+' li:eq('+index+')').hasClass('selected') ){
 				reset=true;
-			} 
+			}
 			$(this.ID+' li:eq('+index+')').remove();
 			if(reset===true){
 				index=Math.min(index, nrow-1);
@@ -196,7 +196,7 @@ function RowPickerList(containerId, listId){
 				}
 				$(this.cID).trigger("change");
 			}
-			
+
 		}
 	};
 
@@ -210,13 +210,13 @@ function RowPickerList(containerId, listId){
 		 $(this.ID+' li:eq('+pos+')').addClass('selected');
 		 $(this.cID).trigger("change");
 	};
-	
+
 	this.addToGroup=function(rowNumber){
 	  var pos=rowNumber-1;
 	  $(this.ID+' li:eq('+pos+')').addClass('group');
 		$(this.cID).trigger("change");
 	};
-	
+
 	this.removeFromGroup=function(rowNumber){
 	  var pos=rowNumber-1;
 	  $(this.ID+' li:eq('+pos+')').removeClass('group');
@@ -235,48 +235,8 @@ function RowPickerList(containerId, listId){
 	};
 }
 
-//var rpl;
-
-$('document').ready( function(){
-	//let k=0
-	/*
-	var rowScroller = new SnippetToolBaR( "tbContainer2", "tibRowButtons", "rowScr0llDown", "rowScrollUp", 32);
-    rowScroller.reAdjustPos();
-    $(rowScroller.downId).click(function(){rowScroller.onDownClick();});
-    $(rowScroller.upId).click(function(){rowScroller.onUpClick();});
-    $(window).on('resize',function(e){  
-      	rowScroller.reAdjustPos();
-    });
-
-	$('#tibRowButtons').sortable();
-	*/
-	
-	/*
-	for(let n =1; n<3; n++){
-		var li=newRowButton(n);
-		//let $el=$( "<li class='tibRowButton'><span></span></li>")
-		$('#tibRowButtons').append(li);
-	};
-	//renumberTibRows();All
-	insertRow(100);
-	insertRow(2);
-	renumberTibRows();
-	*/
-	/*
-	rpl = new RowPickerList("tibRowButtons");
-	rpl. populateRows(12);
-	$( "#tibRowButtons" ).on( "sortupdate", function( event, ui ) {
-		var sortBut=rpl.getRowButtonsAll();
-		console.log("sortBut="+JSON.stringify(sortBut));
-	} );
-	*/
-	
-} );
-   //
+//
 //todo
-//  1. on click
-//      if  ctrl-key add group class to this
-//      else remove all group class entries and add select to this
-// 2. make sortable
-//  3. add update labels (for sorting)
-//  4. add ientry nsert/delete
+//  1. rename SnippetToolBaR => rowToolBaR
+//  2. combine toolBar and PickerList
+//  3. rename snippet js and css

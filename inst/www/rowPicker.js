@@ -70,6 +70,15 @@ $.extend(rowPickerBinding, {
       $(el).data("rowList").deleteRow(index);
       $(el).data("rowList").renumberTibRows();
     }
+    if(!!value.addToGroup){
+      console.log('addToGroup');
+      let index=Number(value.addToGroup);
+      $(el).data("rowList").addToGroup(index);
+    }
+    if(!!value.removeFromGroup){
+      let index=Number(value.removeFromGroup);
+      $(el).data("rowList").removeFromGroup(index);
+    }
     if(!!value.selectRow){
       let index=Number(value.selectRow);
       $(el).data("rowList").selectRow(index);
@@ -88,7 +97,6 @@ $.extend(rowPickerBinding, {
 
     if(!!data.count){
       let count = Number( data.count);
-      console.log('data.count='+JSON.stringify(count));
       this.setValue(el, {count: count});
     }
     if(!!data.renumber){
@@ -105,6 +113,12 @@ $.extend(rowPickerBinding, {
     }
     if(!!data.selectRow){
       this.setValue(el, {selectRow:data.selectRow});
+    }
+    if(!!data.addToGroup){
+      this.setValue(el, {addToGroup:data.addToGroup});
+    }
+    if(!!data.removeFromGroup){
+      this.setValue(el, {removeFromGroup:data.removeFromGroup});
     }
   },
   getType: function(el){
