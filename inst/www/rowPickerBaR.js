@@ -134,6 +134,12 @@ function RowPickerList(containerId, listId){
 					$(this).parent().find(".group").removeClass("group");
 					$(this).toggleClass('selected');
 				}
+				$(cID).data("keys",{
+				    	altKey:   !!event.altKey,
+                        shiftKey: !!event.shiftKey,
+                        ctrlKey:  !!event.ctrlKey,
+                        metaKey:  !!event.metaKey
+				});
 				$(cID).trigger("change");
 			}
 		}).append(span);

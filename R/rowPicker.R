@@ -14,7 +14,8 @@ initRowPickerHandler<-function(){
         rtv<-list(
           selected=as.numeric(jsonlite::fromJSON(x$selected)),
           order=as.numeric(jsonlite::fromJSON(x$order)),
-          group=as.numeric(jsonlite::fromJSON(x$group))
+          group=as.numeric(jsonlite::fromJSON(x$group)),
+          keys= as.logical(jsonlite::fromJSON(x$keys))
         )
         return(rtv)
       }

@@ -12,6 +12,12 @@ $.extend(rowPickerBinding, {
     var rowScroller = new RowPickerScrollBaR( inputId1, inputId2, downId, upId, 22);
     // add to element
     $(el).data("rowScroller", rowScroller);
+    $(el).data("keys",{
+				    	altKey:   false,
+                        shiftKey: false,
+                        ctrlKey:  false,
+                        metaKey:  false
+    });
 
     $(el).data("rowScroller").reAdjustPos();
     $(rowScroller.downId).click(function(){$(el).data("rowScroller").onDownClick();});
@@ -37,12 +43,14 @@ $.extend(rowPickerBinding, {
   },
   getValue: function(el) {
     let selected = $(el).data("rowList").getSelected();
-    let group = $(el).data("rowList").getGroup();
-    let order = $(el).data("rowList").getRowButtonsAll();
+    let group =    $(el).data("rowList").getGroup();
+    let order =    $(el).data("rowList").getRowButtonsAll();
+    let keys  =    $(el).data("keys");
     return {
       selected: JSON.stringify(selected),
       group: JSON.stringify(group),
-      order: JSON.stringify(order)
+      order: JSON.stringify(order),
+      keys:  JSON.stringify(keys)
     };
   },
   setValue: function(el, value) {

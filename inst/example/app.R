@@ -16,7 +16,10 @@ ui <- fluidPage(
 
         rowPicker(inputId="myTibRowCntrl", count=5),
         fixedPanel(top=10, left=100,
-
+           div( tags$b('keys'),
+                div(style="display:inline-block;vertical-align:top;",
+                        textOutput(outputId = 'keys'))
+            ),
            div(  tags$b('selected:'),
                 div(style="display:inline-block;vertical-align:top;",
                     textOutput(outputId = 'selection'))
@@ -84,6 +87,7 @@ server <- function(input, output, session) {
     output$group=renderText(input$myTibRowCntrl$group)
     output$order=renderText(input$myTibRowCntrl$order)
     output$count=renderText(length(input$myTibRowCntrl$order))
+    output$keys=renderText( paste0(input$myTibRowCntrl$keys))
     observeEvent(input$resetSelected,{
         updateRowPicker(session, "myTibRowCntrl", selectRow = input$selectedInput)
     })
