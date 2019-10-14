@@ -30,8 +30,12 @@ initRowPickerHandler<-function(){
 #' @param inputId the id of this shiny input
 #' @param count the number of initial row entries
 #' @export
-rowPicker<-function(inputId, count){
-
+rowPicker<-function(inputId, count, align='left'){
+  if(align=='left'){
+    rclass<-"rowPicker  leftAlign"
+  } else {
+    rclass<-"rowPicker  rightAlign"
+  }
   tagList(
     singleton(
       tags$head(
@@ -45,20 +49,22 @@ rowPicker<-function(inputId, count){
     div(
       id=inputId,
       'data-count'=toJSON(as.numeric(count)),
-      class="rowPicker cSnippetToolBarContainer leftAlign",
+      class=rclass,
       tags$ul(
         id=paste0(inputId,'-list'), #"tibRowButtons",
-        class="cSnippetToolBarList",
+        class="cRowPickerList",
         tags$li(
           class='tibRowButton',
           onclick="alert('999')",
           span(999)
         )
       ),
-      div( id=paste0(inputId,'-scrollUp'), class='scrolleRButton  cTop center',
+      div(id=paste0(inputId,'-scrollUp'),
+          class='scrolleRButton  cTop center',
            span('class'="glyphicon glyphicon-chevron-up")
       ),
-      div( id=paste0(inputId,"-scrollDown"), class='scrolleRButton cBottom center',
+      div( id=paste0(inputId,"-scrollDown"),
+           class='scrolleRButton cBottom center',
            span('class'="glyphicon glyphicon-chevron-down")
       )
     )

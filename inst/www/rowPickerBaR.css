@@ -1,13 +1,5 @@
-.cMidPanel{
-  position: absolute;
-  top:150px;
-  bottom:150px;
-  left: 0;
-  right: 0;
-  overflow: hidden;
-  padding: 10px;
-}
-.cSnippetToolBarList {
+
+.cRowPickerList {
   position: absolute;
   list-style-type: none;
   margin: 0;
@@ -15,7 +7,7 @@
   top:0;
   bottom:0;
 }
-.cSnippetToolBarContainer{
+.rowPicker{
   position: absolute;
   top:0;
   bottom:0;
@@ -23,45 +15,39 @@
   border: 3px solid blue;
   background-color:#222244;
   overflow: hidden;
+  user-select: none;
 }
-.cSnippetToolBarContainer.rightAlign{
+.rowPicker.rightAlign{
 	right: 4px;
 }
-.cSnippetToolBarContainer.leftAlign{
+.rowPicker.leftAlign{
 	left: 4px;
 }
 .scrolleRButton{
   list-style-type: none;
   width: 48px;
   height: 32px;
-  /*padding: 0.25em;*/
   float: left;
-  /*padding-left: 3px; */
   padding: 0;
   margin: 0 ;
-  border-style: solid;
-  border-width: 1px;
-  background: #222244;
+  border-width: 4px;
+  border-style: ridge;
+  background: #000044;
   color: #44FFFF;
 }
 .scrolleRButton a{
 	color: #00FFFF;
 }
-.cTop{
+.scrolleRButton.cTop{
   position: absolute;
   top:0;
-  border-width: 4px;
-  border-style: ridge;
-  background: #000044;
+
 }
-.cBottom{
+.scrolleRButton.cBottom{
   position: absolute;
   bottom:0;
-  border-width: 4px;
-  border-style: ridge;
-  background: #000044;
 }
-.center {
+.scrolleRButton.center {
     padding:4px;
     text-align: center;
 }
