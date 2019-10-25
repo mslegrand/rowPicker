@@ -18,14 +18,14 @@
   user-select: none;
 }
 .rowPicker.rightAlign{
-	right: 4px;
+	right: 0px;
 }
 .rowPicker.leftAlign{
-	left: 4px;
+	left: 0px;
 }
 .scrolleRButton{
   list-style-type: none;
-  width: 48px;
+  width: 46px;
   height: 32px;
   float: left;
   padding: 0;
@@ -53,7 +53,7 @@
 }
 .tibRowButton{
   list-style-type: none;
-  width: 48px;
+  width: 44px;
   height: 22px;
   /*padding: 0.25em;*/
   float: left;
@@ -70,12 +70,16 @@
 	 text-align: center;
 	color: #00FFFF;
 }
-.tibRowButton.selected{
-	border-width: px;
+.tibRowButton.selected, .tibRowButton.selected.group{
+	border-width: 1px;
 	background: #AAFFFF;
 	color: #FFFFFF;
 }
 .tibRowButton.selected span{
+	color: #000000;
+	font-weight:bold;
+}
+.tibRowButton.selected.group span{
 	color: #000000;
 	font-weight:bold;
 }

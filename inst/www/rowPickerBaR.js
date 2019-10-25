@@ -129,6 +129,8 @@ function RowPickerList(containerId, listId){
 			click:function(event){
 				if( event.ctrlKey ){
 					$(this).toggleClass('group');
+					$(this).parent().find(".selected").removeClass("selected");
+					$(this).toggleClass('selected');
 				} else {
 					$(this).parent().find(".selected").removeClass("selected");
 					$(this).parent().find(".group").removeClass("group");
