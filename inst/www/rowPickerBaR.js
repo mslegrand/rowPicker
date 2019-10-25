@@ -128,7 +128,8 @@ function RowPickerList(containerId, listId){
 			class:'tibRowButton',
 			click:function(event){
 				if( event.ctrlKey ){
-					$(this).toggleClass('group');
+					$(this).addClass('group');
+					$(this).parent().find(".selected").addClass("group");
 					$(this).parent().find(".selected").removeClass("selected");
 					$(this).toggleClass('selected');
 				} else {
