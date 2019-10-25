@@ -215,6 +215,15 @@ function RowPickerList(containerId, listId){
 		$(this.cID).trigger("change");
 	};
 
+	this.removeEntireGroup=function(){
+	    console.log('inside rowPickerBaR.js: removeEntireGroup')
+	  var pos;
+	  for ( pos=0; pos<$(this.ID+ ' li').length; pos++){
+	      $(this.ID+' li:eq('+pos+')').removeClass('group');
+	  }
+	  $(this.cID).trigger("change");
+	};
+
 	this.populateRows=function(n){
 		this.clearRows();
 		for(var i=0;i<n;i++){

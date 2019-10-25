@@ -28,7 +28,6 @@ $.extend(rowPickerBinding, {
 	  $("#"+inputId2).sortable(
 	    {
 	      update:function(event, ui){
-	      console.log('hello');
 	      $(el).trigger("change");
 	    }
 
@@ -84,13 +83,15 @@ $.extend(rowPickerBinding, {
       $(el).data("rowScroller").reAdjustPos();
     }
     if(!!value.addToGroup){
-      console.log('addToGroup');
       let index=Number(value.addToGroup);
       $(el).data("rowList").addToGroup(index);
     }
     if(!!value.removeFromGroup){
       let index=Number(value.removeFromGroup);
       $(el).data("rowList").removeFromGroup(index);
+    }
+    if(!!value.removeEntireGroup){
+       $(el).data("rowList").removeEntireGroup();
     }
     if(!!value.selectRow){
       let index=Number(value.selectRow);
@@ -132,6 +133,9 @@ $.extend(rowPickerBinding, {
     }
     if(!!data.removeFromGroup){
       this.setValue(el, {removeFromGroup:data.removeFromGroup});
+    }
+    if(!!data.removeEntireGroup){
+        this.setValue(el, {removeEntireGroup:data.removeEntireGroup});
     }
   },
   getType: function(el){
