@@ -84,7 +84,7 @@ function RowPickerList(containerId, listId){
   this.cID= "#" + containerId;
 	this.ID =  "#" +  listId;
 	this.SelectedRow=1;
-	$(this.ID).sortable();
+	$(this.ID).sortable({ tolerance:6, distance:10  });
 
   this.change=function(){
     $(this.cID).trigger("change");
@@ -112,6 +112,7 @@ function RowPickerList(containerId, listId){
 		//console.log('tmp='+JSON.stringify(tmp));
 		return(tmp);
 	};
+
 
 	this.getGroup=function(){// need to track number of selected row.(){
 		 var tmp = $(this.ID).find('li.group span').map(function(i,e){
