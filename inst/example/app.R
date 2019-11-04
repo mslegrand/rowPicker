@@ -103,8 +103,8 @@ server <- function(input, output, session) {
     })
     observeEvent(input$addToGroup,{
         pos<-input$rowPosInput
-        cat('add to group=',pos,"\n")
-        #newVal=sample.int(100,1)
+        #pos<-toJSON(input$rowPosInput)
+        pos<-c(5,6,input$rowPosInput)
         updateRowPicker(session, "myTibRowCntrl", addToGroup = pos)
     })
     observeEvent(input$removeFromGroup,{

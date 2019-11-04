@@ -5,6 +5,7 @@ $.extend(rowPickerBinding, {
   },
   initialize: function(el){
     //  Initialize any data values here
+    // console.log('initializing rowPicker with id='+el.id);
     var inputId1=el.id;
     var inputId2=el.id+'-list';
     var downId=el.id+"-scrollDown";
@@ -38,6 +39,7 @@ $.extend(rowPickerBinding, {
     let count = $(el).attr(`data-count`);
     count=JSON.parse(count);
     $(el).data("rowList").populateRows(count);
+    $(el).data("rowList").change();
     $(el).data('rowScroller').reAdjustPos();
   },
   getValue: function(el) {
@@ -55,8 +57,11 @@ $.extend(rowPickerBinding, {
   setValue: function(el, value) {
     // used for updating input control
     if(!!value.count){
-      if(value.count>0){
-        $(el).data("rowList").populateRows(value.count);
+      //console.log('count='+value.count);
+      //console.log('typeof count='+typeof(value.count));
+      let count=Number(value.count);
+      if(count>0){
+        $(el).data("rowList").populateRows(count);
         $(el).data("rowScroller").reAdjustPos();
       } else {
         $(el).data("rowList").clearRows();
@@ -64,39 +69,72 @@ $.extend(rowPickerBinding, {
       }
     }
     if(!!value.clearRows){
+       // console.log('clearRows');
       $(el).data("rowList").clearRows();
       $(el).data("rowScroller").reAdjustPos();
     }
     if(!!value.renumber){
+        // console.log('renumber');
       $(el).data("rowList").renumberTibRows();
     }
     if(!!value.insertRow){
-      let index=Number(value.insertRow);
-      $(el).data("rowList").insertRow(index);
-      $(el).data("rowList").renumberTibRows();
-      $(el).data("rowScroller").reAdjustPos();
+        let rows=value.insertRow;
+       // console.log('insertRow');
+        if(!Array.isArray(rows)){ rows=[rows];}
+        let index;
+        for( index of rows){
+            $(el).data("rowList").insertRow(index);
+        }
+        $(el).data("rowList").renumberTibRows();
+        $(el).data("rowScroller").reAdjustPos();
     }
     if(!!value.deleteRow){
-      let index=Number(value.deleteRow);
-      $(el).data("rowList").deleteRow(index);
-      $(el).data("rowList").renumberTibRows();
-      $(el).data("rowScroller").reAdjustPos();
+      //  console.log('deleteRow');
+        let rows=value.deleteRow;
+        if(!Array.isArray(rows)){ rows=[rows];}
+        let index;
+          for( index of rows){
+              $(el).data("rowList").deleteRow(index);
+          }
+        $(el).data("rowList").renumberTibRows();
+        $(el).data("rowScroller").reAdjustPos();
     }
     if(!!value.addToGroup){
-      let index=Number(value.addToGroup);
-      $(el).data("rowList").addToGroup(index);
+      //  console.log('addToGroup');
+      let rows=value.addToGroup;
+     // console.log('shit rows='+JSON.toString(rows));
+     // console.log('shit rows='+rows);
+     // console.log('typeof rows='+typeof(rows));
+     // console.log('Array.isArray(rows)='+Array.isArray(rows));
+      if(!Array.isArray(rows)){ rows=[rows];}
+      let index;
+     // console.log('length rows='+rows.length);
+      for( index of rows){
+          $(el).data("rowList").addToGroup(index);
+      }
     }
     if(!!value.removeFromGroup){
-      let index=Number(value.removeFromGroup);
-      $(el).data("rowList").removeFromGroup(index);
+     //   console.log('removeFromGroup');
+      let rows=value.removeFromGroup;
+      if(!Array.isArray(rows)){ rows=[rows];}
+      let index;
+      for( index of rows){
+          $(el).data("rowList").removeFromGroup(index);
+      }
+      //let index=Number(value.removeFromGroup);
+     // $(el).data("rowList").removeFromGroup(index);
     }
     if(!!value.removeEntireGroup){
+     //   console.log('removeEntireGroup');
        $(el).data("rowList").removeEntireGroup();
     }
     if(!!value.selectRow){
+    // console.log('selectRow');
       let index=Number(value.selectRow);
       $(el).data("rowList").selectRow(index);
     }
+   // console.log('change');
+    $(el).data("rowList").change();
   },
   subscribe: function(el, callback) {
     // notify server whenever change
@@ -108,6 +146,9 @@ $.extend(rowPickerBinding, {
     $(el).off(".rowPickerBinding");
   },
   receiveMessage: function(el, data) { //called by server when updating
+    // console.log(JSON.toString(data));
+    this.setValue(el,data);
+/*
 
     if(!!data.count){
       let count = Number( data.count);
@@ -137,6 +178,7 @@ $.extend(rowPickerBinding, {
     if(!!data.removeEntireGroup){
         this.setValue(el, {removeEntireGroup:data.removeEntireGroup});
     }
+*/
   },
   getType: function(el){
     return "rowPickerBinding";
