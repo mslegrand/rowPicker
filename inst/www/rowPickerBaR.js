@@ -86,15 +86,15 @@ function RowPickerList(containerId, listId){
 	this.SelectedRow=1;
 	$(this.ID).sortable({ tolerance:6, distance:10  });
 
-  this.change=function(){
-    $(this.cID).trigger("change");
-  };
+      this.change=function(){
+        $(this.cID).trigger("change");
+      };
 
 	this.renumberTibRows=function(){
 		$(this.ID+' li span').each( function(index, value){
 			$(this).text(index+1);
 		});
-		this.change();
+		//this.change();
 	};
 
 	this.getRowButtonsAll=function(){
@@ -129,8 +129,9 @@ function RowPickerList(containerId, listId){
 			class:'tibRowButton',
 			click:function(event){
 				if( event.ctrlKey ){
-					$(this).addClass('group');
-					$(this).parent().find(".selected").addClass("group");
+				    $(this).toggleClass('group');
+					//$(this).addClass('group');
+					//$(this).parent().find(".selected").addClass("group");
 					$(this).parent().find(".selected").removeClass("selected");
 					$(this).toggleClass('selected');
 				} else {
@@ -164,7 +165,7 @@ function RowPickerList(containerId, listId){
 			$(this.ID).append(rowbutton);
 		}
 		this.selectRow(rowNumber);
-		$(this.cID).trigger("change");
+		//$(this.cID).trigger("change");
 		//$(this).parent().find(".selected").removeClass("selected");
 
 
@@ -187,7 +188,7 @@ function RowPickerList(containerId, listId){
 				if(index>0){
 					$(this.ID+' li:eq('+index+')').addClass('selected');
 				}
-				$(this.cID).trigger("change");
+				//$(this.cID).trigger("change");
 			}
 
 		}
@@ -201,28 +202,28 @@ function RowPickerList(containerId, listId){
 		$(this.ID).find(".selected").removeClass("selected");
 		var pos=rowNumber-1;
 		 $(this.ID+' li:eq('+pos+')').addClass('selected');
-		 $(this.cID).trigger("change");
+		 //$(this.cID).trigger("change");
 	};
 
 	this.addToGroup=function(rowNumber){
 	  var pos=rowNumber-1;
 	  $(this.ID+' li:eq('+pos+')').addClass('group');
-		$(this.cID).trigger("change");
+		//$(this.cID).trigger("change");
 	};
 
 	this.removeFromGroup=function(rowNumber){
 	  var pos=rowNumber-1;
 	  $(this.ID+' li:eq('+pos+')').removeClass('group');
-		$(this.cID).trigger("change");
+		//$(this.cID).trigger("change");
 	};
 
 	this.removeEntireGroup=function(){
-	    console.log('inside rowPickerBaR.js: removeEntireGroup')
+	    //console.log('inside rowPickerBaR.js: removeEntireGroup');
 	  var pos;
 	  for ( pos=0; pos<$(this.ID+ ' li').length; pos++){
 	      $(this.ID+' li:eq('+pos+')').removeClass('group');
 	  }
-	  $(this.cID).trigger("change");
+	  //$(this.cID).trigger("change");
 	};
 
 	this.populateRows=function(n){
@@ -233,7 +234,7 @@ function RowPickerList(containerId, listId){
 		}
 		this.renumberTibRows();
 		this.selectRow(n);
-		this.change();
+		//this.change();
 	};
 }
 
