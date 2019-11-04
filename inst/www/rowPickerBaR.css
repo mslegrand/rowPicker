@@ -70,9 +70,14 @@
 	 text-align: center;
 	color: #00FFFF;
 }
-.tibRowButton.selected, .tibRowButton.selected.group{
+.tibRowButton.selected{
 	border-width: 1px;
 	background: #AAFFFF;
+	color: #FFFFFF;
+}
+.tibRowButton.selected.group{
+	border-width: 1px;
+	background: #AAAAFF;
 	color: #FFFFFF;
 }
 .tibRowButton.selected span{
