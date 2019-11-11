@@ -63,7 +63,8 @@ ui <- fluidPage(
                actionButton(inputId='removeRow', label='removeRow') ,
                actionButton(inputId='addToGroup', label='addToGroup') ,
                actionButton(inputId='removeFromGroup', label='removeFromGroup'),
-               actionButton(inputId='removeEntireGroup', label='removeEntireGroup')
+               actionButton(inputId='removeEntireGroup', label='removeEntireGroup'),
+               actionButton(inputId='toggleGroup', label='toggleGroup')
            )
         )
     )
@@ -94,7 +95,6 @@ server <- function(input, output, session) {
     })
     observeEvent(input$insertRow,{
         pos<-input$rowPosInput
-        #newVal=sample.int(100,1)
         updateRowPicker(session, "myTibRowCntrl", insertRow = pos)
     })
     observeEvent(input$removeRow,{
@@ -103,16 +103,19 @@ server <- function(input, output, session) {
     })
     observeEvent(input$addToGroup,{
         pos<-input$rowPosInput
-        #pos<-toJSON(input$rowPosInput)
-        pos<-c(5,6,input$rowPosInput)
+        #pos<-c(5,6,input$rowPosInput)
         updateRowPicker(session, "myTibRowCntrl", addToGroup = pos)
     })
     observeEvent(input$removeFromGroup,{
         pos<-input$rowPosInput
         updateRowPicker(session, "myTibRowCntrl", removeFromGroup = pos)
     })
-    observeEvent(input$removeEntireGroup,{
+    observeEvent(input$toggleGroup,{
         pos<-input$rowPosInput
+        updateRowPicker(session, "myTibRowCntrl", toggleGroup = pos)
+    })
+    observeEvent(input$removeEntireGroup,{
+        pos<-input$myTibRowCntrl$selected
         updateRowPicker(session, "myTibRowCntrl", removeEntireGroup = pos)
     })
 }

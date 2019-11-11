@@ -133,6 +133,10 @@ $.extend(rowPickerBinding, {
       let index=Number(value.selectRow);
       $(el).data("rowList").selectRow(index);
     }
+    if(!!value.toggleGroup){
+      let index=Number(value.toggleGroup);
+      $(el).data("rowList").toggleGroup(index);
+    }
    // console.log('change');
     $(el).data("rowList").change();
   },
@@ -148,37 +152,6 @@ $.extend(rowPickerBinding, {
   receiveMessage: function(el, data) { //called by server when updating
     // console.log(JSON.toString(data));
     this.setValue(el,data);
-/*
-
-    if(!!data.count){
-      let count = Number( data.count);
-      this.setValue(el, {count: count});
-    }
-    if(!!data.renumber){
-      this.setValue(el, {renumber:true});
-    }
-    if(!!data.clearRows){
-      this.setValue(el, {clearRows: true});
-    }
-    if(!!data.insertRow){
-      this.setValue(el, {insertRow:data.insertRow});
-    }
-    if(!!data.deleteRow){
-      this.setValue(el, {deleteRow:data.deleteRow});
-    }
-    if(!!data.selectRow){
-      this.setValue(el, {selectRow:data.selectRow});
-    }
-    if(!!data.addToGroup){
-      this.setValue(el, {addToGroup:data.addToGroup});
-    }
-    if(!!data.removeFromGroup){
-      this.setValue(el, {removeFromGroup:data.removeFromGroup});
-    }
-    if(!!data.removeEntireGroup){
-        this.setValue(el, {removeEntireGroup:data.removeEntireGroup});
-    }
-*/
   },
   getType: function(el){
     return "rowPickerBinding";

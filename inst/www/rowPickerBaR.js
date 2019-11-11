@@ -128,12 +128,19 @@ function RowPickerList(containerId, listId){
 		var li =$("<li />",{
 			class:'tibRowButton',
 			click:function(event){
-				if( event.ctrlKey ){
-				    $(this).toggleClass('group');
+
+				if( !!event.ctrlKey ){
+				    if($(this).hasClass("selected")){
+				        $(this).toggleClass('group');
+				    } else {
+				        $(this).parent().find(".selected").removeClass("selected");
+					    $(this).toggleClass('selected');
+					    $(this).addClass('group');
+				    }
+
 					//$(this).addClass('group');
 					//$(this).parent().find(".selected").addClass("group");
-					$(this).parent().find(".selected").removeClass("selected");
-					$(this).toggleClass('selected');
+
 				} else {
 					$(this).parent().find(".selected").removeClass("selected");
 					$(this).parent().find(".group").removeClass("group");
@@ -209,6 +216,12 @@ function RowPickerList(containerId, listId){
 	  var pos=rowNumber-1;
 	  $(this.ID+' li:eq('+pos+')').addClass('group');
 		//$(this.cID).trigger("change");
+	};
+
+	this.toggleGroup=function(rowNumber){
+	   var pos=rowNumber-1;
+	   console.log('toggleGroup: pos=',pos);
+	  $(this.ID+' li:eq('+pos+')').toggleClass('group');
 	};
 
 	this.removeFromGroup=function(rowNumber){

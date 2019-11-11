@@ -71,20 +71,16 @@
 	color: #00FFFF;
 }
 .tibRowButton.selected{
-	border-width: 1px;
-	background: #AAFFFF;
+	border-width: 2px;
+	background: #DDEEFF;
 	color: #FFFFFF;
 }
 .tibRowButton.selected.group{
-	border-width: 1px;
-	background: #AAAAFF;
+	border-width: 2px;
+	background: #DDFF66;
 	color: #FFFFFF;
 }
 .tibRowButton.selected span{
-	color: #000000;
-	font-weight:bold;
-}
-.tibRowButton.selected.group span{
 	color: #000000;
 	font-weight:bold;
 }
@@ -96,6 +92,9 @@
 	color: #FFFFFF;
 	font-weight:bold;
 }
-
+.tibRowButton.selected.group span{
+	color: #0000FF;
+	font-weight:bold;
+}
 
 
