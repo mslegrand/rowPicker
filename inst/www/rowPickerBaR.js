@@ -137,11 +137,14 @@ function RowPickerList(containerId, listId){
 					    $(this).toggleClass('selected');
 					    $(this).addClass('group');
 				    }
+				} else if(!!event.altKey) {
+				    $(this).toggleClass('tattoo');
+				}
 
 					//$(this).addClass('group');
 					//$(this).parent().find(".selected").addClass("group");
 
-				} else {
+				 else {
 					$(this).parent().find(".selected").removeClass("selected");
 					$(this).parent().find(".group").removeClass("group");
 					$(this).toggleClass('selected');

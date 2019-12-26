@@ -67,34 +67,37 @@
   color: #44FFFF;
 }
 .tibRowButton span{
-	 text-align: center;
+	text-align: center;
 	color: #00FFFF;
 }
-.tibRowButton.selected{
-	border-width: 2px;
-	background: #DDEEFF;
+.tibRowButton.selected, .tibRowButton.group{
+    border-width: 2px;
 	color: #FFFFFF;
 }
+.tibRowButton.selected{
+	background: #DDEEFF;
+}
+.tibRowButton.group{
+	background: #4444FF;
+}
 .tibRowButton.selected.group{
-	border-width: 2px;
 	background: #DDFF66;
-	color: #FFFFFF;
+}
+.tibRowButton.selected span, .tibRowButton.group span{
+    font-weight:bold;
 }
 .tibRowButton.selected span{
 	color: #000000;
-	font-weight:bold;
-}
-.tibRowButton.group{
-	border-width: 2px;
-	background: #4444FF;
 }
 .tibRowButton.group span{
 	color: #FFFFFF;
-	font-weight:bold;
 }
 .tibRowButton.selected.group span{
 	color: #0000FF;
-	font-weight:bold;
+}
+.tibRowButton.tattoo, .tibRowButton.group.tattoo, .tibRowButton.selected.tattoo, .tibRowButton.group.selected.tattoo{
+    border-right-width: 5px;
+    border-right-color: #FFBB00;
 }
 
 
