@@ -128,8 +128,18 @@ function RowPickerList(containerId, listId){
 		var li =$("<li />",{
 			class:'tibRowButton',
 			click:function(event){
-
-				if( !!event.ctrlKey ){
+/*			    console.log("event.keyCode="+event.keyCode);
+			    if(event.altKey){
+			        console.log('=====altKey');
+			    } else if(event.ctrlKey){
+			        console.log('=====ctrlKey'); //fails on mac
+			    } else if(event.metaKey){
+	                console.log('=====metaKey');
+			    } else if(event.shiftKey){
+			        console.log('=======shiftKey');
+			    }
+*/
+				if( !!event.shiftKey ){
 				    if($(this).hasClass("selected")){
 				        $(this).toggleClass('group');
 				    } else {
