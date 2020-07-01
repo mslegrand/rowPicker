@@ -25,9 +25,9 @@ function RowPickerScrollBaR(containerId, listId, buttonDownId, buttonUpId, itemH
     return rtv;
   };
   RowPickerScrollBaR.prototype.reAdjustPos = function(){
-    console.log('entering reAdjustPos');
+    //console.log('entering reAdjustPos');
     var deltaHidden = this.heightOfHidden() - this.gHiddenHeight;
-    console.log('deltaHidden=' + deltaHidden);
+    //console.log('deltaHidden=' + deltaHidden);
     if( deltaHidden > 0 ){ // container got smaller, hidden increased
       // keep current position
       // show down
@@ -233,7 +233,7 @@ function RowPickerList(containerId, listId){
 
 	this.toggleGroup=function(rowNumber){
 	   var pos=rowNumber-1;
-	   console.log('toggleGroup: pos=',pos);
+	   //console.log('toggleGroup: pos=',pos);
 	  $(this.ID+' li:eq('+pos+')').toggleClass('group');
 	};
 
